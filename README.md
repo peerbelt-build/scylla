@@ -13,12 +13,23 @@ git submodule update --init --recursive
 ### Building and Running Scylla on Ubuntu
 * Installing required packages:
 
-Thrift
+## Thrift
 
+Install the dependencies
 ```
 sudo apt-get install automake bison flex g++ git libboost-all-dev libevent-dev libssl-dev libtool make pkg-config
 sudo apt-get install libglib2.0-dev
 ```
+
+Get the source code
+```
+git clone https://git-wip-us.apache.org/repos/asf/thrift.git thrift
+cd thrift
+```
+
+Follow the steps described at https://thrift.apache.org/docs/BuildingFromSource
+
+Other Scylla dependencies:
 
 ```
 sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? 
