@@ -14,9 +14,11 @@ git submodule update --init --recursive
 * Installing required packages:
 
 ```
-sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev
+sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? 
 
-ninja-build ragel libaio-devel cryptopp-devel xfsprogs-devel numactl-devel hwloc-devel libpciaccess-devel libxml2-devel python3-pyparsing lksctp-tools-devel protobuf-devel protobuf-compiler systemd-devel libunwind-devel
+numactl-devel libunwind-devel
+
+libhwloc-dev libpciaccess-dev libxml2-dev python3-pyparsing lksctp-tools? libprotobuf-dev protobuf-compiler libsystemd-dev
 ```
 
 * Build Scylla
