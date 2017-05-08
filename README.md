@@ -10,6 +10,20 @@ Scylla uses submodules, so make sure you pull the submodules first by doing:
 git submodule init
 git submodule update --init --recursive
 ```
+### Building and Running Scylla on Ubuntu
+* Installing required packages:
+
+```
+sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev
+
+ninja-build ragel libaio-devel cryptopp-devel xfsprogs-devel numactl-devel hwloc-devel libpciaccess-devel libxml2-devel python3-pyparsing lksctp-tools-devel protobuf-devel protobuf-compiler systemd-devel libunwind-devel
+```
+
+* Build Scylla
+```
+./configure.py --mode=release --with=scylla --disable-xen
+ninja-build build/release/scylla -j2 # you can use more cpus if you have tons of RAM
+```
 
 ### Building and Running Scylla on Fedora
 * Installing required packages:
