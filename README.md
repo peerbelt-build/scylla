@@ -31,9 +31,15 @@ Follow the steps described at https://thrift.apache.org/docs/BuildingFromSource
 
 If getting ```g++: error: /libboost_unit_test_framework.a: No such file or directory```, do the following
 ```
-ln -s /usr/lib/arm-linux-gnueabihf/libboost_unit_test_framework.a /usr/lib/libboost_unit_test_framework.a
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_unit_test_framework.a /usr/lib/libboost_unit_test_framework.a
 ```
-and run make again, then the build completes.
+and run make again, then the build completes. Then for the tests you may need:
+```
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_system.a /usr/lib/libboost_system.a
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_thread.a /usr/lib/libboost_thread.a
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_filesystem.a /usr/lib/libboost_filesystem.a
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_chrono.a /usr/lib/libboost_chrono.a
+```
 
 #### Other Scylla dependencies
 
