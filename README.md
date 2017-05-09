@@ -13,7 +13,7 @@ git submodule update --init --recursive
 ### Building and Running Scylla on Ubuntu
 * Installing required packages:
 
-## Thrift
+#### Thrift
 
 Install the dependencies
 ```
@@ -35,7 +35,7 @@ ln -s /usr/lib/arm-linux-gnueabihf/libboost_unit_test_framework.a /usr/lib/libbo
 ```
 and run make again, then the build completes.
 
-Other Scylla dependencies:
+#### Other Scylla dependencies
 
 ```
 sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? 
