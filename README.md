@@ -46,9 +46,9 @@ sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_chrono.a /usr/lib/libboost_chro
 ```
 sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? libsctp-dev
 
-numactl-devel libunwind-devel
+numactl-devel
 
-libhwloc-dev libpciaccess-dev libxml2-dev python3-pyparsing lksctp-tools? libprotobuf-dev protobuf-compiler libsystemd-dev
+libunwind-dev libhwloc-dev libpciaccess-dev libxml2-dev python3-pyparsing lksctp-tools? libprotobuf-dev protobuf-compiler libsystemd-dev
 ```
 
 * Build Scylla
