@@ -43,6 +43,11 @@ sudo ln -s /usr/lib/arm-linux-gnueabihf/libboost_chrono.a /usr/lib/libboost_chro
 
 #### Other Scylla dependencies
 
+* Seastar
+```
+sudo apt-get install libaio-dev ninja-build ragel libhwloc-dev libnuma-dev libpciaccess-dev libcrypto++-dev libboost-all-dev libxen-dev libxml2-dev xfslibs-dev g++
+```
+
 ```
 sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? libsctp-dev
 
