@@ -49,7 +49,7 @@ sudo apt-get install libaio-dev ninja-build ragel libhwloc-dev libnuma-dev libpc
 ```
 
 ```
-sudo apt-get install libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? libsctp-dev
+sudo apt-get install xfslibs-dev libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? libsctp-dev
 
 numactl-devel
 
