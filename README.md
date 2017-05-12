@@ -51,6 +51,8 @@ sudo apt-get install libaio-dev ninja-build ragel libhwloc-dev libnuma-dev libpc
 ```
 sudo apt-get install xfslibs-dev libyaml-cpp-dev liblz4-dev zlib1g-dev libsnappy-dev libjsoncpp-dev thrift-compiler? antlr3? libantlr3c-dev libasan0 libasan1 libasan2 libubsan0 gcc libgnutls-dev ninja-build ragel libaio-dev libcrypto++-dev xfsprogs? libsctp-dev
 
+systemtap-sdt-dev
+
 numactl-devel
 
 libunwind-dev libhwloc-dev libpciaccess-dev libxml2-dev python3-pyparsing lksctp-tools? libprotobuf-dev protobuf-compiler libsystemd-dev
