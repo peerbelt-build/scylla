@@ -199,10 +199,13 @@ verify_rlimit(bool developer_mode) {
 }
 
 static bool cpu_sanity() {
+#ifdef __arm__
+#elif __x86_64__
     if (!__builtin_cpu_supports("sse4.2")) {
         std::cerr << "Scylla requires a processor with SSE 4.2 support\n";
         return false;
     }
+#endif // __arm__
     return true;
 }
 

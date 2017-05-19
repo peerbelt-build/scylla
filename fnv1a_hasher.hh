@@ -35,6 +35,14 @@ struct fnv1a_constants<8> {
     };
 };
 
+template<>
+struct fnv1a_constants<4> {
+    enum : uint32_t {
+        offset = 0x811c9dc5ul,
+        prime = 0x1000193ul,
+    };
+};
+
 class fnv1a_hasher {
     using constants = fnv1a_constants<sizeof(size_t)>;
     size_t _hash = constants::offset;

@@ -217,7 +217,7 @@ static void write_partial_partition(ser::writer_of_qr_partition<bytes_ostream>&&
     auto rows = pv.rows();
     // rows.size() can be 0 is there's a single static row
     auto it = rows.begin();
-    for (uint32_t i = 0; i < std::min(rows.size(), uint64_t{rows_to_include}); ++i) {
+    for (uint32_t i = 0; i < std::min(static_cast<uint64_t>(rows.size()), uint64_t{rows_to_include}); ++i) {
         rows_wr.add(*it++);
     }
     std::move(rows_wr).end_rows().end_qr_partition();

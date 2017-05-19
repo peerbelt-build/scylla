@@ -117,9 +117,9 @@ static int64_t make_clock_seq_and_node()
     unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
     int clock = rand_r(&seed);
 
-    long lsb = 0;
+    int64_t lsb = 0;
     lsb |= 0x8000000000000000L;                 // variant (2 bits)
-    lsb |= (clock & 0x0000000000003FFFL) << 48; // clock sequence (14 bits)
+    lsb |= (static_cast<int64_t>(clock) & 0x0000000000003FFFL) << 48; // clock sequence (14 bits)
     lsb |= make_node();                          // 6 bytes
     return lsb;
 }

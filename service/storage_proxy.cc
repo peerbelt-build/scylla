@@ -2251,10 +2251,10 @@ public:
         for (auto& r : _data_results) {
             _is_short_read = _is_short_read || r.result->is_short_read();
             r.reached_end = !r.result->is_short_read() && r.result->row_count() < cmd.row_limit
-                            && (cmd.partition_limit == query::max_partitions
-                                || boost::range::count_if(r.result->partitions(), [] (const partition& p) {
+                            && (static_cast<uint64_t>( cmd.partition_limit == query::max_partitions )
+                                || static_cast<uint64_t>(boost::range::count_if(r.result->partitions(), [] (const partition& p) {
                                     return p.row_count();
-                                }) < cmd.partition_limit);
+                                })) < static_cast<uint64_t>( cmd.partition_limit ) );
             _all_reached_end = _all_reached_end && r.reached_end;
         }
 

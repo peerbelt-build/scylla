@@ -25,6 +25,13 @@
 #include "utils/class_registrator.hh"
 #include <boost/lexical_cast.hpp>
 
+#ifdef __arm__
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision;
+#elif __x86_64__
+using uint128_t = unsigned __int128;
+#endif
+
 namespace dht {
 
 inline
@@ -215,7 +222,7 @@ murmur3_partitioner::shard_of(const token& t) const {
             // divide that range evenly among shards:
             uint64_t adjusted = uint64_t(l) + uint64_t(std::numeric_limits<int64_t>::min());
             adjusted <<= _sharding_ignore_msb_bits;
-            return (__int128(adjusted) * _shard_count) >> 64;
+            return static_cast<unsigned>((int128_t(adjusted) * int128_t(_shard_count)) >> 64);
     }
     assert(0);
 }
@@ -231,19 +238,18 @@ murmur3_partitioner::token_for_next_shard(const token& t) const {
             if (long_token(t) == std::numeric_limits<int64_t>::min()) {
                 return token_for_next_shard(get_token(std::numeric_limits<int64_t>::min() + 1));
             }
-            using uint128 = unsigned __int128;
             auto s = shard_of(t) + 1;
             s = s < _shard_count ? s : 0;
             int64_t l = long_token(t);
             // treat l as a fraction between 0 and 1 and use 128-bit arithmetic to
             // divide that range evenly among shards:
             uint64_t adjusted = uint64_t(l) + uint64_t(std::numeric_limits<int64_t>::min());
-            auto mul = align_up(uint128(adjusted) * _shard_count + 1, uint128(1) << (64 - _sharding_ignore_msb_bits));
+            auto mul = align_up(uint128_t(adjusted) * _shard_count + 1, uint128_t(1) << (64 - _sharding_ignore_msb_bits));
             if (mul >> 64 == _shard_count) {
                 return maximum_token();
             }
-            uint64_t e = mul / _shard_count;
-            while (((uint128(e << _sharding_ignore_msb_bits) * _shard_count) >> 64) != s) {
+            uint64_t e = static_cast<uint64_t>( mul / _shard_count );
+            while (((uint128_t(e << _sharding_ignore_msb_bits) * _shard_count) >> 64) != s) {
                 // division will round down, so correct for it
                 ++e;
             }

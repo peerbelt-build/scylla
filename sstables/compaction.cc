@@ -185,7 +185,7 @@ protected:
     }
 
     uint64_t partitions_per_sstable() const {
-        uint64_t estimated_sstables = std::max(1UL, uint64_t(ceil(double(_info->start_size) / _max_sstable_size)));
+        uint64_t estimated_sstables = std::max(1ULL, uint64_t(ceil(double(_info->start_size) / _max_sstable_size)));
         return ceil(double(_estimated_partitions) / estimated_sstables);
     }
 

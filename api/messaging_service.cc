@@ -37,7 +37,7 @@ using msg_addr = messaging_service::msg_addr;
 static const int32_t num_verb = static_cast<int32_t>(messaging_verb::LAST);
 
 std::vector<message_counter> map_to_message_counters(
-        const std::unordered_map<gms::inet_address, unsigned long>& map) {
+        const std::unordered_map<gms::inet_address, uint64_t>& map) {
     std::vector<message_counter> res;
     for (auto i : map) {
         res.push_back(message_counter());
@@ -57,7 +57,7 @@ future_json_function get_client_getter(std::function<uint64_t(const shard_info&)
     return [f](std::unique_ptr<request> req) {
         using map_type = std::unordered_map<gms::inet_address, uint64_t>;
         auto get_shard_map = [f](messaging_service& ms) {
-            std::unordered_map<gms::inet_address, unsigned long> map;
+            std::unordered_map<gms::inet_address, uint64_t> map;
             ms.foreach_client([&map, f] (const msg_addr& id, const shard_info& info) {
                 map[id.addr] = f(info);
             });
@@ -74,7 +74,7 @@ future_json_function get_server_getter(std::function<uint64_t(const rpc::stats&)
     return [f](std::unique_ptr<request> req) {
         using map_type = std::unordered_map<gms::inet_address, uint64_t>;
         auto get_shard_map = [f](messaging_service& ms) {
-            std::unordered_map<gms::inet_address, unsigned long> map;
+            std::unordered_map<gms::inet_address, uint64_t> map;
             ms.foreach_server_connection_stats([&map, f] (const rpc::client_info& info, const rpc::stats& stats) mutable {
                 map[gms::inet_address(net::ipv4_address(info.addr))] = f(stats);
             });

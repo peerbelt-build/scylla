@@ -22,6 +22,51 @@
 #pragma once
 
 #include <cstdint>
+
+#ifdef __arm__
+#include <boost/crc.hpp>
+namespace utils {
+
+class crc32 {
+    boost::crc_32_type crc;
+public:
+    // All process() functions assume input is in
+    // host byte order (i.e. equivalent to storing
+    // the value in a buffer and crcing the buffer).
+    void process(int8_t in) {
+        crc.process_byte((unsigned char)in);
+    }
+    void process(uint8_t in) {
+        crc.process_byte((unsigned char)in);
+    }
+    void process(int16_t in) {
+        crc.process_bytes((void*)&in, sizeof(int16_t));
+    }
+    void process(uint16_t in) {
+        crc.process_bytes((void*)&in, sizeof(uint16_t));
+    }
+    void process(int32_t in) {
+        crc.process_bytes((void*)&in, sizeof(int32_t));
+    }
+    void process(uint32_t in) {
+        crc.process_bytes((void*)&in, sizeof(uint32_t));
+    }
+    void process(int64_t in) {
+        crc.process_bytes((void*)&in, sizeof(int64_t));
+    }
+    void process(uint64_t in) {
+        crc.process_bytes((void*)&in, sizeof(uint64_t));
+    }
+    void process(const uint8_t* in, size_t size) {
+        crc.process_bytes((void*)in, size);
+    }
+    uint32_t get() const {
+        return crc.checksum();
+    }
+};
+
+}
+#elif __x86_64__
 #include <smmintrin.h>
 
 namespace utils {
@@ -99,3 +144,4 @@ public:
 };
 
 }
+#endif

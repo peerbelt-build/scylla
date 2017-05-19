@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2016 ScyllaDB
  */
@@ -79,6 +80,9 @@ template<> struct serializer<int32_t> : public integral_serializer<int32_t> {};
 template<> struct serializer<uint32_t> : public integral_serializer<uint32_t> {};
 template<> struct serializer<int64_t> : public integral_serializer<int64_t> {};
 template<> struct serializer<uint64_t> : public integral_serializer<uint64_t> {};
+//
+template<> struct serializer<long int> : public integral_serializer<int32_t> {};
+template<> struct serializer<unsigned long int> : public integral_serializer<uint32_t> {};
 
 template<typename Output>
 void safe_serialize_as_uint32(Output& output, uint64_t data);

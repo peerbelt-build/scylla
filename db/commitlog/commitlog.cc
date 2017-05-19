@@ -829,7 +829,7 @@ public:
     // ensures no more of this segment is writeable, by allocating any unused section at the end and marking it discarded
     // a.k.a. zero the tail.
     size_t clear_buffer_slack() {
-        auto size = align_up(_buf_pos, alignment);
+        auto size = align_up(_buf_pos, static_cast<uint64_t>(alignment));
         std::fill(_buffer.get_write() + _buf_pos, _buffer.get_write() + size,
                 0);
         _segment_manager->totals.bytes_slack += (size - _buf_pos);
