@@ -834,8 +834,8 @@ operator<<(std::basic_ostream<CharT, Traits>& os, const year_month_weekday_last&
 inline namespace literals
 {
 
-CONSTCD11 date::day  operator "" _d(unsigned long long d) NOEXCEPT;
-CONSTCD11 date::year operator "" _y(unsigned long long y) NOEXCEPT;
+CONSTCD11 date::day  operator "" _d(uint64_t d) NOEXCEPT;
+CONSTCD11 date::year operator "" _y(uint64_t y) NOEXCEPT;
 
 // CONSTDATA date::month jan{1};
 // CONSTDATA date::month feb{2};
@@ -1660,7 +1660,7 @@ inline namespace literals
 CONSTCD11
 inline
 date::day
-operator "" _d(unsigned long long d) NOEXCEPT
+operator "" _d(uint64_t d) NOEXCEPT
 {
     return date::day{static_cast<unsigned>(d)};
 }
@@ -1668,7 +1668,7 @@ operator "" _d(unsigned long long d) NOEXCEPT
 CONSTCD11
 inline
 date::year
-operator "" _y(unsigned long long y) NOEXCEPT
+operator "" _y(uint64_t y) NOEXCEPT
 {
     return date::year(static_cast<int64_t>(y));
 }

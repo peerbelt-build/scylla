@@ -270,17 +270,17 @@ future<> parse(random_access_reader& in, double& d) {
     return in.read_exactly(sizeof(double)).then([&d] (auto buf) {
         check_buf_size(buf, sizeof(double));
 
-        auto *nr = reinterpret_cast<const net::packed<unsigned long long> *>(buf.get());
+        auto *nr = reinterpret_cast<const net::packed<uint64_t> *>(buf.get());
         d = convert<double>(net::ntoh(*nr));
         return make_ready_future<>();
     });
 }
 
 inline void write(file_writer& out, double d) {
-    auto *nr = reinterpret_cast<const net::packed<unsigned long long> *>(&d);
+    auto *nr = reinterpret_cast<const net::packed<uint64_t> *>(&d);
     auto tmp = net::hton(*nr);
     auto p = reinterpret_cast<const char*>(&tmp);
-    out.write(p, sizeof(unsigned long long)).get();
+    out.write(p, sizeof(uint64_t)).get();
 }
 
 template <typename T>
@@ -2278,7 +2278,7 @@ entry_descriptor entry_descriptor::make_descriptor(sstring fname) {
     } else {
         throw malformed_sstable_exception(sprint("invalid version for file %s. Name doesn't match any known version.", fname));
     }
-    return entry_descriptor(ks, cf, version, boost::lexical_cast<unsigned long long>(generation), sstable::format_from_sstring(format), sstable::component_from_sstring(component));
+    return entry_descriptor(ks, cf, version, boost::lexical_cast<uint64_t>(generation), sstable::format_from_sstring(format), sstable::component_from_sstring(component));
 }
 
 sstable::version_types sstable::version_from_sstring(sstring &s) {
